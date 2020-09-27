@@ -251,6 +251,7 @@ namespace ClusteringDS01.Model
                     else { topDeals.Add(cluster.Key, new List<Tuple<int, int>> { new Tuple<int, int>(offerID, sum) }); }
                 }
             }
+            //
             return topDeals;
         }
 

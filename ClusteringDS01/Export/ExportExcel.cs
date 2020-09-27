@@ -103,7 +103,7 @@ namespace ClusteringDS01.Export
                     position++;
                 }
                 idx++;
-
+                //
             }
         }
     }
