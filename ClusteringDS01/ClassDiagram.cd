@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClusteringDS01.Distances.Euclidean">
+    <Position X="8.5" Y="2.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Distances\Euclidean.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ClusteringDS01.Distances.Silhouette">
+    <Position X="6" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAABAgAhAAQAAAAAAAAAAAAAAAAAgAACAAAAgIA=</HashCode>
+      <FileName>Distances\Silhouette.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClusteringDS01.Export.ExportExcel">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAEAAgABAAAAAQAAAEAgAACAAAAAAA=</HashCode>
+      <FileName>Export\ExportExcel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClusteringDS01.Model.Centroid">
+    <Position X="3.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IEAAgEAEAAAQhYAEAABAAAAAAgCACAAQAQAAEAAAAAA=</HashCode>
+      <FileName>Model\Centroid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClusteringDS01.Model.CustomerInfo">
+    <Position X="6.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAQAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\CustomerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClusteringDS01.Reader.CsvReader">
+    <Position X="0.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAARAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Reader\CsvReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClusteringDS01.Program">
+    <Position X="8.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAACIAEAAAAAAAAAAAAACBAABAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ClusteringDS01.Distances.IDistance">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Distances\IDistance.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
