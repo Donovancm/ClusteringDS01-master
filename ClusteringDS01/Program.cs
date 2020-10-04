@@ -73,7 +73,7 @@ namespace ClusteringDS01
                 var customers = cluster.Value;
                 foreach (var customer in customers)
                 {
-                    Silhouette.CalculateSilhouette(customer.CustomerId);
+                    Silhouette.CalculateSilhouette(customer.CustomerId, cluster.Key);
                 }
             }
           

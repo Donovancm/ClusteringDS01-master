@@ -13,7 +13,7 @@ namespace ClusteringDS01.Distances
         ///  DistancesCohesion = een dictonary van  key: klantIdX, value: list van centroid nummer, klantidY en afstand
         /// </summary>
         public static Dictionary<int, List<Tuple<int, int, double>>> DistancesCohesion = new Dictionary<int, List<Tuple<int, int, double>>>();
-        
+
         /// <summary>
         /// DistancesSeperation = een dictonary van  key: klantIdX, value: list van centroid nummer, klantidY en afstand
         /// </summary>
@@ -29,11 +29,11 @@ namespace ClusteringDS01.Distances
         /// 
         /// </summary>
         /// <param name="customerId">KlantId X</param>
-        public static void CalculateSilhouette(int customerId)
+        public static void CalculateSilhouette(int customerId, int centroidnr)
         {
             double silhouette = 0.0;
             var cohesion = AverageCohesion(customerId);
-            var seperation = AverageSeparation(customerId);
+            var seperation = AverageSeparation(customerId, centroidnr);
             if (cohesion < seperation)
             {
                 silhouette = 1 - (cohesion / seperation);
@@ -47,6 +47,10 @@ namespace ClusteringDS01.Distances
             {
                 // (sep(i) / co(i) ) - 1
                 silhouette = (seperation / cohesion) - 1;
+            }
+            if (silhouette == 0)
+            {
+                Console.WriteLine("Customer: " + customerId + ", coh: " + cohesion + ", sep: " + seperation + ", silhouttevalue: " + silhouette);
             }
             var customerName = CsvReader.customersDictionary[customerId].CustomerName;
             SilhouetteValues.Add(customerName, silhouette);
@@ -118,40 +122,21 @@ namespace ClusteringDS01.Distances
         /// </summary>
         /// <param name="customerId">KlantId X</param>
         /// <returns>afstand in double</returns>
-        public static double AverageSeparation(int customerId)
+        public static double AverageSeparation(int customerId, int centroidnr)
         {
-            var output = 0.0;
-            // int centroid = Centroid.GetSSECentroidByCustomerId(customerId);
-            Dictionary<int, double> interCluster = new Dictionary<int, double>();
-            //loop combinaties van key and value waar id. -->  concat to list
-
-            List<int> listCentroid = new List<int>();
-            foreach (var customer in DistancesSeperation)
+            var sum = 0.0;
+            var keys = DistancesSeperation.Keys;
+            foreach (var id in keys)
             {
-                if (customer.Key == customerId)
+                if (DistancesSeperation[id].Any(x => x.Item2 == customerId))
                 {
-                    listCentroid.AddRange(customer.Value.Select(value => value.Item1));
-                }
-                else
-                {
-                    var filterByCustomerId = customer.Value.Where(value => value.Item2 == customerId);
-                    if(filterByCustomerId.Count() != 0)
-                    {
-                        listCentroid.AddRange(customer.Value.Select(value => value.Item1));
-                    }
+                    sum += DistancesSeperation[id].Find(a => a.Item2 == customerId).Item3;
                 }
             }
-            listCentroid = listCentroid.Distinct().ToList();
-            foreach (var centroidNumber in listCentroid)
-            {
-                var list = DistancesSeperation[customerId].Where(x => x.Item1 == centroidNumber).ToList();
-                var observationCount = list.Count;
-                double result = list.Sum(x => x.Item3) / observationCount;
-                interCluster.Add(centroidNumber, result);
-            }
-            interCluster.OrderByDescending(x => x.Value);
-            output = interCluster.First().Value;
-            return output;
+            sum += DistancesSeperation[customerId].Sum(x => x.Item3);
+            var observationCount = DistancesSeperation[customerId].Count();
+            double result = sum / observationCount;
+            return result;
         }
 
         /// <summary>
