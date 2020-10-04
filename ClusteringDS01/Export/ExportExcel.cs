@@ -47,14 +47,14 @@ namespace ClusteringDS01.Export
         public static void CreateClusterWorkSheet()
         {
             currWorksheet.Cells[1, 1].Value = "SSE: " + Centroid.sse;
-            foreach (var cluster in Centroid.sseCentroids)
+            foreach (var cluster in Centroid.ClusterProducts())
             {
                 currWorksheet.Cells[cluster.Key + 3, 1].Value = cluster.Key;
                 currWorksheet.Cells[cluster.Key + 3, 1].Style.Font.Bold = true;
-                List<CustomerInfo> customerInfos = cluster.Value;
-                for (int i = 0; i < customerInfos.Count; i++)
+                List<int> products = cluster.Value;
+                for (int i = 0; i < products.Count; i++)
                 {
-                    currWorksheet.Cells[cluster.Key + 3, i + 3].Value = customerInfos.ElementAt(i).CustomerName;
+                    currWorksheet.Cells[cluster.Key + 3, i + 3].Value = products.ElementAt(i);
                 }
             }
         }

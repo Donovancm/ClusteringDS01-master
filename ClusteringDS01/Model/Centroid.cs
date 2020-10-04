@@ -22,6 +22,36 @@ namespace ClusteringDS01.Model
 
         public Centroid() { }
 
+        //key => centriod number, value product numbers
+        public static Dictionary<int, List<int>> ClusterProducts()
+        {
+            Dictionary<int, List<int>> clusterProducts = new Dictionary<int, List<int>>();
+            foreach (var cluster in sseCentroids)
+            {
+                var customers = cluster.Value;
+                foreach (var customer in customers)
+                {
+                    // a => artikelnummer
+                    for (int a = 1; a <= customer.Offer.Count(); a++)
+                    {
+                        int key = cluster.Key;
+                        if (clusterProducts.ContainsKey(key))
+                        {
+                            if (!clusterProducts[key].Contains(a) && customer.Offer.ElementAt(a-1) == 1)
+                            {
+                                clusterProducts[key].Add(a);
+                            }
+                        }                        
+                        else
+                        {
+                            clusterProducts.Add(cluster.Key, new List<int>() { a });
+                        }
+                    }
+                }
+            }
+            return clusterProducts;
+        }
+
         /// <summary>
         /// Creeren van aantal centroids K
         /// </summary>
@@ -274,5 +304,7 @@ namespace ClusteringDS01.Model
             }
            return centroid;
         }
+
+   
     }
 }

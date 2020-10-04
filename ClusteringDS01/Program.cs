@@ -92,14 +92,15 @@ namespace ClusteringDS01
         public static void PrintResults()
         {
             Console.WriteLine("SSE: " + Centroid.sse);
-            SortedDictionary<int, List<CustomerInfo>> sortedData = new SortedDictionary<int, List<CustomerInfo>>(Centroid.sseCentroids);
-            foreach (var cluster in sortedData)
+            //SortedDictionary<int, List<CustomerInfo>> sortedData = new SortedDictionary<int, List<CustomerInfo>>(Centroid.sseCentroids);
+            var clusterProducts = Centroid.ClusterProducts();
+            foreach (var cluster in clusterProducts)
             {
-                Console.WriteLine("K: " + cluster.Key + "\t");
-                List<CustomerInfo> customers = cluster.Value;
-                foreach (var customer in customers)
+                Console.WriteLine("Label: " + (cluster.Key-1) + "\t");
+                List<int> products = cluster.Value;
+                foreach (var a in products)
                 {
-                    Console.Write( customer.CustomerName + ", ");
+                    Console.Write( a + ", ");
                 }
                 Console.WriteLine();
             }
